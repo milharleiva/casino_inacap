@@ -1,0 +1,10 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Confirmación de Pago</h2>
+    <p>Tu pago ha sido procesado exitosamente.</p>
+    <!-- Asumiendo que tienes una variable de contexto 'boleta' disponible -->
+    <a href="{% url 'mostrar_boleta' boleta.id %}" class="btn btn-primary">Ver Boleta</a>
+</div>
+{% endblock %}

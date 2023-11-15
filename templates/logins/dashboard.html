@@ -1,0 +1,37 @@
+{% extends 'logins/base.html' %}
+
+{% block title %}
+Panel de control
+{% endblock title %}
+
+{% block content %}
+    <h2>Panel de control</h2>
+    <p>{{ user.username }}</p>
+    .
+    <p>Listado de usuarios registrados en el sistema</p>
+    {% if users %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo electrónico</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <td>{{u.username}}</td>
+                <td>{{u.first_name}}</td>
+                <td>{{u.last_name}}</td>
+                <td>{{u.email}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <hr>
+    <p>¡Aun no hay usuarios registrados!</p>
+    {% endif%}
+{% endblock content %}

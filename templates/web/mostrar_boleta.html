@@ -1,0 +1,16 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Boleta</h2>
+    <p>RUT: {{ boleta.usuario.username }}</p>
+    <p>Nombre: {{ boleta.usuario.first_name }} {{ boleta.usuario.last_name }}</p>
+    <p>Pedido y precio:</p>
+    <ul>
+        {% for item in boleta.items.all %}
+        <li>{{ item.menu.nombre }}: ${{ item.menu.precio }}</li>
+        {% endfor %}
+    </ul>
+    <p>Total pagado: ${{ boleta.total }}</p>
+</div>
+{% endblock %}

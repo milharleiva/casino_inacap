@@ -1,0 +1,46 @@
+{% extends 'logins/base.html' %}
+
+{% block title %}
+Formulario de registro
+{% endblock title %}
+
+{% block content %}
+    <h2>Formulario de registro</h2>
+    <p>Ingrese sus datos para registrarse. Si ya tiene una cuenta, <a href="/login">inicie sesión</a>.</p>
+    <hr>
+    <form action="/register/" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Rut</label>
+                <input class="form-control" type="text" name="usuario" placeholder="Ingrese su Rut" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Nombre</label>
+                <input class="form-control" type="text" name="nombre" placeholder="Ingrese su nombre" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Apellido</label>
+                <input class="form-control" type="text" name="last-name" placeholder="Ingrese su apellido" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input class="form-control" type="email" name="email" placeholder="Ingrese su correo electrónico" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Contraseña</label>
+                <input class="form-control" type="password" name="password" placeholder="Ingrese la contraseña" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Confirmación de la contraseña</label>
+                <input class="form-control" type="password" name="re-password" placeholder="Reingrese la contraseña" required>
+            </div>
+        </div>
+        <button class="btn btn-secondary" type="submit">Registrarse</button>
+        <a class="btn btn-primary" href="/">Inicio</a>
+    </form>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends 'logins/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    {% if user.is_superuser %}
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center">Crear Menu</h2>
+                <form action="/crear_menu/" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre del menu:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">descripcion:</label>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">precio del Menu:</label>
+                        <input type="number" class="form-control" id="precio" name="precio" required>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Crear Menu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center" role="alert">
+            No tienes permisos para ver esta página.
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

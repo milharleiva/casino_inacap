@@ -1,0 +1,35 @@
+{% extends 'logins/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Listado de Menús</h2>
+    <div class="row">
+        {% for menu in menus %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% if menu.imagen %}{{ menu.imagen.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" class="card-img-top" alt="{{ menu.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ menu.nombre }}</h5>
+                    <p class="card-text">{{ menu.descripcion }}</p>
+                    <p class="card-text">${{ menu.precio }}</p>
+                    <form method="post" action="{% url 'añadir_al_carrito' menu.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Añadir al Carrito</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p>No hay menús disponibles.</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="my-4 text-end">
+        <a href="{% url 'carrito' %}" class="btn btn-success btn-lg">Ir al Carrito para Pagar</a>
+    </div>
+</div>
+
+{% endblock content %}
