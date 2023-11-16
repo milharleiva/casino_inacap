@@ -5,23 +5,23 @@ from django.conf import settings
 from transbank.common.integration_type import IntegrationType
 
 def initialize_transbank_sdk():
-    # Asegurándose de que la configuración sólo se realice una vez
+    
     if not hasattr(Transaction, 'is_configured') or not Transaction.is_configured:
         try:
-            # Configura las credenciales globales para el SDK de Transbank
+           
             Transaction.configure_for_integration(
                 settings.TRANSBANK_COMMERCE_CODE, settings.TRANSBANK_API_KEY)
-            # Indica que el SDK ha sido configurado
+           
             Transaction.is_configured = True
             print("Transbank SDK configured successfully.")
         except TransbankError as e:
-            # Manejar adecuadamente la excepción
+            
             print(f"Error al configurar Transbank SDK: {str(e)}")
 
 class TransbankService:
     @staticmethod
     def iniciar_transaccion(monto, orden_compra, sesion_id, url_retorno):
-        # Asegúrate de que el SDK está inicializado
+        
         initialize_transbank_sdk()
         
         try:
@@ -38,7 +38,7 @@ class TransbankService:
 
     @staticmethod
     def confirmar_transaccion(token):
-        # Asegúrate de que el SDK está inicializado
+        
         initialize_transbank_sdk()
         
         try:
