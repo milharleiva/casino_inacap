@@ -37,11 +37,10 @@ class Boleta(models.Model):
     estado = models.CharField(max_length=10, choices=ESTADOS, default='pendiente')
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     total = models.IntegerField(default=0)
-    codigo_autorizacion = models.CharField(max_length=64, blank=True, null=True)  # Código de autorización de Transbank
-    token_transbank = models.CharField(max_length=64, blank=True, null=True)   # Asumiendo que deseas tener centavos
+    codigo_autorizacion = models.CharField(max_length=64, blank=True, null=True)  
+    token_transbank = models.CharField(max_length=64, blank=True, null=True)   
     
-    # Puedes añadir otros campos que puedan ser necesarios para tu lógica de negocio,
-    # como un campo de referencia para un sistema de pago externo, etc.
+  
 
     def __str__(self):
         return f"Boleta {self.id} - Usuario: {self.usuario.username} - Estado: {self.estado}"
