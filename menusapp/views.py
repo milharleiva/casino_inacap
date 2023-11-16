@@ -162,12 +162,12 @@ def listar_menu(request):
 @login_required
 def carrito(request):
     try:
-        # Suponiendo que cada usuario tiene un solo carrito asociado
+        
         carrito = Carrito.objects.get(usuario=request.user)
         items = ItemCarrito.objects.filter(carrito=carrito)
         total = sum(item.get_cost() for item in items)
     except Carrito.DoesNotExist:
-        # Esto maneja el caso en que el usuario aún no tiene un carrito
+        
         items = []
         total = 0
 
@@ -186,7 +186,7 @@ def añadir_al_carrito(request, id_menu):
     menu = get_object_or_404(Menu, id=id_menu)
     carrito, creado = Carrito.objects.get_or_create(usuario=request.user)
 
-    # Verifica si el ítem ya está en el carrito para incrementar la cantidad
+   
     item_carrito, creado = ItemCarrito.objects.get_or_create(carrito=carrito, menu=menu)
     if not creado:
         item_carrito.cantidad += 1
@@ -216,15 +216,15 @@ def actualizar_carrito(request):
 
 @login_required
 def procesar_pago(request):
-    # Asegúrate de que el SDK de Transbank está inicializado
+    
     initialize_transbank_sdk()
 
-    # Obtén o crea el carrito del usuario
+   
     carrito, created = Carrito.objects.get_or_create(usuario=request.user)
     items = ItemCarrito.objects.filter(carrito=carrito)
     total = sum(item.get_cost() for item in items)
 
-    # Genera un identificador único para la orden de compra
+    
     orden_compra = uuid.uuid4().hex
 
     
@@ -245,7 +245,7 @@ def procesar_pago(request):
         return redirect(url_pago)
         
     else:
-        # Si hay un error, muestra un mensaje y redirige al usuario de vuelta al carrito
+       
         messages.error(request, 'Error al iniciar la transacción con Transbank.')
         return redirect('/carrito')
 
@@ -298,7 +298,7 @@ def transbank_respuesta(request):
             codigo_autorizacion=resultado.codigo_autorizacion,
             token_transbank=token
         )
-        # Aquí debes limpiar el carrito después de un pago exitoso
+        
         messages.success(request, 'Pago exitoso.')
     else:
         boleta = Boleta.objects.create(
@@ -309,5 +309,5 @@ def transbank_respuesta(request):
         )
         messages.error(request, 'Pago rechazado por Transbank.')
 
-    # Redirige a una página de confirmación o de resultado
+    
     return render(request, 'transbank_respuesta.html', {'boleta': boleta})    
