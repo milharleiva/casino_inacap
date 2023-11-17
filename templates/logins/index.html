@@ -1,11 +1,72 @@
 {% extends 'logins/base.html' %}
+{% load static %}
 
-{% block title %}
-Inicio
-{% endblock title %}
+{% block title %}Inicio{% endblock %}
 
 {% block content %}
-    <h2>Compra en casino inacap</h2>
+<h2>¡Compra en Nuestro Nuevo Casino Virtual!</h2>
+{% if user.is_authenticated %}
+    <div class="espacio">
     <p></p>
-    <p></p>
-{% endblock content %}
+    </div>
+    <div class="image-container">
+        <a href="/listar_menu">
+            <img class="imgin" src="{% static 'imagenes/alm.png' %}" alt="Imagen 1">
+        </a>
+        <a href="/listar_menu">
+            <img class="imgin" src="{% static 'imagenes/ens.png' %}" alt="Imagen 2">
+        </a>
+        <a href="/listar_menu">
+            <img class="imgin" src="{% static 'imagenes/pos.png' %}" alt="Imagen 3">
+        </a>
+    </div>
+    
+    {% else %}
+    <div class="espacio">
+        <p></p>
+        </div>
+    <div class="image-container">
+        <a href="/login/">
+            <img class="imgin" src="{% static 'imagenes/alm.png' %}" alt="Imagen 1">
+        </a>
+        <a href="/login/">
+            <img class="imgin" src="{% static 'imagenes/ens.png' %}" alt="Imagen 2">
+        </a>
+        <a href="/login/">
+            <img class="imgin" src="{% static 'imagenes/pos.png' %}" alt="Imagen 3">
+        </a>
+    </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- Columna de contacto -->
+            <div class="col-md-4 footer-contact">
+                <img src="{% static 'imagenes/logoinacolor.png' %}" alt="Logo INACAP" class="footer-logo">
+                <p>Dirección: Google maps<br>Av. Vitacura 10.151, Vitacura, Santiago - Chile.</p>
+                <p>Teléfono: 800 20 25 20<br>Desde celulares: 02 - 2 5797204<br>E-mail: informaciones@inacap.cl</p>
+            </div>
+            <!-- Columna de enlaces útiles -->
+            <div class="col-md-4 footer-links">
+                <h5>Enlaces útiles</h5>
+                <ul>
+                    <li><a href="#">Mapa del sitio</a></li>
+                    <li><a href="#">Políticas de Privacidad</a></li>
+                    <li><a href="#">Mesa de Servicio</a></li>
+                </ul>
+            </div>
+            <!-- Columna de acreditaciones -->
+            <div class="col-md-4 footer-accreditations">
+                <h5>Acreditaciones</h5>
+                <!-- Inserta aquí tus imágenes de acreditación -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

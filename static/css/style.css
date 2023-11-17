@@ -1,0 +1,113 @@
+.navbg{
+    background-color: #9b0a0a;
+    background-size: cover;
+}
+
+.navlogo{
+    width: 8vh;
+    height: 3vh;
+    display: inline-block;
+    text-rendering: geometricPrecision;
+}
+
+.derecha a{
+    color:white;
+    right: 2vh;
+}
+
+
+
+.image-container {
+  display: flex;
+  flex-direction: row; /* Cambiado de column a row */
+  align-items: center; /* Alinea las imágenes hacia la parte inferior */
+  width: auto;
+}
+
+.espacio{
+  height: 10vh;
+}
+
+
+.imgin {
+  width: 40vh;
+  height: auto;
+  margin-right: 10vh;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.imgin:hover {
+  transform: scale(1.1); /* Agranda la imagen al 110% del tamaño original */
+  filter: brightness(70%); /* Oscurece la imagen al 70% de su brillo original */
+}
+/* Agregar línea por encima de la imagen */
+.imgin::before {
+  content: "";
+  position: absolute;
+  top: -5px; /* Ajusta la posición vertical de la línea superior */
+  left: 0;
+  right: 0;
+  border-top: 1px solid black; /* Estilo de la línea superior */
+}
+
+/* Agregar línea debajo de la imagen */
+.imgin::after {
+  content: "";
+  position: absolute;
+  bottom: -5px; /* Ajusta la posición vertical de la línea inferior */
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid black; /* Estilo de la línea inferior */
+}
+
+
+
+
+
+
+.footer {
+  outline: 2px solid rgb(141, 138, 138); /* Borde exterior */
+  background-color: rgb(223, 218, 218); /* Cambia al color de fondo que prefieras */
+  color: #333333; /* Cambia al color de texto que prefieras */
+  padding: 2px 0;
+  box-sizing: border-box;
+}
+
+.footer-contact, .footer-links, .footer-accreditations {
+  margin: 5px 0;
+}
+
+.footer-contact p, .footer-links ul, .footer-accreditations h5 {
+  color: inherit; /* Hereda el color del footer para mantener consistencia */
+}
+
+.footer-links ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-links ul li a {
+  color: #333333; /* Asegúrate de que el color de los enlaces se vea bien sobre el fondo */
+  text-decoration: none;
+  display: block; /* Hace que cada enlace utilice su propia línea */
+}
+
+.footer-links h5, .footer-accreditations h5 {
+  margin-bottom: 15px;
+  color: #333333; /* Cambia al color que prefieras */
+}
+
+/* Asegúrate de ajustar los breakpoints y los estilos para la responsividad */
+@media (max-width: 768px) {
+  .footer-contact, .footer-links, .footer-accreditations {
+    text-align: center;
+  }
+}
+
+.footer-logo {
+  width: 15vh; /* o el tamaño que prefieras */
+  height: auto; /* mantiene la proporción */
+  display: block; /* para centrar si es necesario, dependiendo del diseño de tu footer */
+  margin-left: 0;
+  margin-right: auto;
+}

@@ -18,9 +18,7 @@ import uuid
 
 class Error404View8(TemplateView):
     template_name = "web/error404.html"
-
-
-
+    
 
 def index(request):
     return render(request, 'logins/index.html')
